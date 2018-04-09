@@ -1,0 +1,6 @@
+1. copy the 3 folders to your garrysmod folder.
+2. Subscribe to the following workshop packs:
+	https://steamcommunity.com/sharedfiles/filedetails/?id=488250410	
+3. Start up the gamemode gmstranded on the map gms_coastal_island_v2.bsp
+4. Enjoy!
+

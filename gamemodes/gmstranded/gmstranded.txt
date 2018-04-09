@@ -1,0 +1,8 @@
+"Gamemode"
+{
+	"base"		"base"
+	"title"		"Garry's Mod Stranded - Standalone"
+	"maps"		"^gms_"
+	"menusystem"	"1"
+
+}

@@ -1,0 +1,101 @@
+TODO:
+Camp Fire light and unlight
+Death check to set afk.
+
+
+
+Wish List
+---------
+
+New PCache - void cache item + meteoric iron ingredients.
+Another cave - On the other side of the plateau
+Fishing Event - Fish pool spawns randomly in water near shore.
+Equipments - Can equip one of each type ( Trinket, Ring, Amulet )
+Weekly Events - 
+	Gathering Events - Who can gather the most of a certain type of thing.
+Void Cache Items - 
+	Server wide relics that boost xp for a time.
+	
+	
+Bonus Worlds - Forest for cutting trees
+Cave for mining
+
+
+
+
+
+Ideas:
+------
+
+
+flying boss???
+boss enrage
+
+ ___________________________________________________________________________________
+|	Daily Quests:																	|
+|	-------------																	|
+|																					|
+|	Daily Quest Reward:																|
+|	------------------																|
+|	EXP Token: Choose from 1 skill to boost by 2500 or ALL skills by 500.			|
+|	After 3 day streak you get a void cache.										|
+|	After 5 day streak you get 1500gt												|
+|	After 7 day streak you get 3 void keys (Resets to 0 days)						|
+|___________________________________________________________________________________|
+
+
+Quest Ideas:
+
+1. Kill and retrieve 10 Antlion Heads.
+2. Return with 25 Cooked Herring.
+3. Return with 30 iron.
+4. Collect 25 Oak wood.
+5. Bake 10 bread.
+6. Bring 1 black pet egg.
+7. Return with 50 sand.
+8. Return with 70 stone.
+
+
+
+
+
+
+
+
+
+
+
+New pcache types. Holds lots of a few item types.
+Bloodmoon Boss if Blood Moon is on Thursday
+Farming Machine, Powered by coal, collects farmed items near it.
+Failed Potions - http://g4p.org/Forum/showthread.php?tid=2110
+Hardcore Mode - http://g4p.org/Forum/showthread.php?tid=2118
+
+
+
+
+Tribe Update Phase 1:
+--------------------
+Tribe Experience Weekly/Daily Cap (60,000xp)
+
+Tribe Leveling -
+
+
+Tribe Achievements
+------------------
+
+
+
+
+
+
+
+
+
+
+
+[b][u][size=medium]Fixes[/size][/u][/b]
+[b][u][size=medium]Additions[/size][/u][/b]
+[b][u][size=medium]Changes[/size][/u][/b]
+	+ Can't cast a spell in a chair anymore.
+[b][u][size=medium]Removals[/size][/u][/b]

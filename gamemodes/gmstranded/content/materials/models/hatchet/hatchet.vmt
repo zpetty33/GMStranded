@@ -1,0 +1,25 @@
+"VertexLitGeneric"
+{
+        "$basetexture" "models/hatchet/hatchet"
+        $bumpmap "models/hatchet/hatchet_bmp"
+        $halflambert 1
+        $nodecal 1
+        $model 1
+        $phong 1
+        $phongexponent 1
+        $phongboost 5
+        $phongfresnelranges     "[0.01 0.01 0.1]"
+       
+        "$blendtintbybasealpha" "1"
+        "$blendtintcoloroverbase" "0"
+ 
+        Proxies
+        {
+        PlayerToolColor
+        {
+        resultVar $color2
+        default 0.1 0.1 0.1
+        }
+        }
+ 
+}
