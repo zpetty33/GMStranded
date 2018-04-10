@@ -209,11 +209,11 @@ function SGS_AddGTokenToSID(ply, com, args)
 			end
 		end
 		SGS_SendMessage(ply, "Player not connected. Checking save files...")
-		if file.Exists("SGStranded/NewSaves/"..SID..".txt", "DATA") then
-			local decode = util.JSONToTable( file.Read( "SGStranded/NewSaves/" .. SID .. ".txt", "DATA" ) )
+		if file.Exists("sgstranded/newsaves/"..SID..".txt", "DATA") then
+			local decode = util.JSONToTable( file.Read( "sgstranded/newsaves/" .. SID .. ".txt", "DATA" ) )
 			decode.gtokens.tokens = decode.gtokens.tokens + toadd
 
-			file.Write( "SGStranded/NewSaves/" .. SID .. ".txt", util.TableToJSON( decode, true ) )
+			file.Write( "sgstranded/newsaves/" .. SID .. ".txt", util.TableToJSON( decode, true ) )
 			SGS_SendMessage(ply, "User found and GTokens added")
 			SGS.Log("** (CONSOLE) gave " .. toadd .. "x GTokens to " .. SID .. "!")
 		else

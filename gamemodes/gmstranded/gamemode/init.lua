@@ -30,56 +30,56 @@ resource.AddSingleFile( "particles/thw_river.pcf" )
 local PlayerMeta = FindMetaTable("Player")
 local EntityMeta = FindMetaTable("Entity")
 
-if !file.Exists( "SGStranded", "DATA" ) then
-	file.CreateDir( "SGStranded" )
+if !file.Exists( "sgstranded", "DATA" ) then
+	file.CreateDir( "sgstranded" )
 end
 
-if !file.Exists( "SGStranded/Saves", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves" )
+if !file.Exists( "sgstranded/saves", "DATA" ) then
+	file.CreateDir( "sgstranded/saves" )
 end
 
-if !file.Exists( "SGStranded/Saves/Inventory", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves/Inventory" )
+if !file.Exists( "sgstranded/saves/inventory", "DATA" ) then
+	file.CreateDir( "sgstranded/saves/inventory" )
 end
 
-if !file.Exists( "SGStranded/Saves/Inventory/PCacheBoss", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves/Inventory/PCacheBoss" )
+if !file.Exists( "sgstranded/saves/inventory/PCacheBoss", "DATA" ) then
+	file.CreateDir( "sgstranded/saves/inventory/PCacheBoss" )
 end
 
-if !file.Exists( "SGStranded/Saves/Inventory/PCache", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves/Inventory/PCache" )
+if !file.Exists( "sgstranded/saves/inventory/PCache", "DATA" ) then
+	file.CreateDir( "sgstranded/saves/inventory/PCache" )
 end
 
-if !file.Exists( "SGStranded/Saves/Inventory/PCache2", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves/Inventory/PCache2" )
+if !file.Exists( "sgstranded/saves/inventory/PCache2", "DATA" ) then
+	file.CreateDir( "sgstranded/saves/inventory/PCache2" )
 end
 
-if !file.Exists( "SGStranded/Saves/Inventory/PCache3", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves/Inventory/PCache3" )
+if !file.Exists( "sgstranded/saves/inventory/PCache3", "DATA" ) then
+	file.CreateDir( "sgstranded/saves/inventory/PCache3" )
 end
 
-if !file.Exists( "SGStranded/Saves/Inventory/PCache4", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves/Inventory/PCache4" )
+if !file.Exists( "sgstranded/saves/inventory/PCache4", "DATA" ) then
+	file.CreateDir( "sgstranded/saves/inventory/PCache4" )
 end
 
-if !file.Exists( "SGStranded/Saves/Inventory/PTCache", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves/Inventory/PTCache" )
+if !file.Exists( "sgstranded/saves/inventory/PTCache", "DATA" ) then
+	file.CreateDir( "sgstranded/saves/inventory/PTCache" )
 end
 
-if !file.Exists( "SGStranded/Saves/Pets", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves/Pets" )
+if !file.Exists( "sgstranded/saves/pets", "DATA" ) then
+	file.CreateDir( "sgstranded/saves/pets" )
 end
 
-if !file.Exists( "SGStranded/CrashRecovery", "DATA" ) then
-	file.CreateDir( "SGStranded/CrashRecovery" )
+if !file.Exists( "sgstranded/crashrecovery", "DATA" ) then
+	file.CreateDir( "sgstranded/crashrecovery" )
 end
 
-if !file.Exists( "SGStranded/Saves/Tools", "DATA" ) then
-	file.CreateDir( "SGStranded/Saves/Tools" )
+if !file.Exists( "sgstranded/saves/tools", "DATA" ) then
+	file.CreateDir( "sgstranded/saves/tools" )
 end
 
-if !file.Exists( "G4P/GTokens", "DATA" ) then
-	file.CreateDir( "G4P/GTokens" )
+if !file.Exists( "g4p/gtokens", "DATA" ) then
+	file.CreateDir( "g4p/gtokens" )
 end
 
 for k, v in pairs(SGS.pma) do

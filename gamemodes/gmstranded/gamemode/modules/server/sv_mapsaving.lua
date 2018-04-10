@@ -1,8 +1,8 @@
 function SGS_LoadWorlds()
 	SGS.WorldEntities = {}
 	for w_id, _ in pairs( GAMEMODE.Worlds.tblWorlds ) do
-		if file.Exists("SGStranded/mapsaves/" .. game.GetMap() .. "_world_" .. tostring(w_id) .. ".txt", "DATA") then 
-			SGS.WorldEntities[w_id] = util.JSONToTable( file.Read("SGStranded/mapsaves/" .. game.GetMap() .. "_world_" .. tostring(w_id) .. ".txt", "DATA") )
+		if file.Exists("sgstranded/mapsaves/" .. game.GetMap() .. "_world_" .. tostring(w_id) .. ".txt", "DATA") then 
+			SGS.WorldEntities[w_id] = util.JSONToTable( file.Read("sgstranded/mapsaves/" .. game.GetMap() .. "_world_" .. tostring(w_id) .. ".txt", "DATA") )
 		end
 	end
 	--[[
@@ -97,7 +97,7 @@ function SGS_SaveMap()
 					savegame[k] = entry
 				end
 			end
-			file.Write("SGStranded/mapsaves/" .. game.GetMap() .. "_world_" .. tostring(i) .. ".txt",util.TableToJSON(savegame, true))
+			file.Write("sgstranded/mapsaves/" .. game.GetMap() .. "_world_" .. tostring(i) .. ".txt",util.TableToJSON(savegame, true))
 		end
 end
 

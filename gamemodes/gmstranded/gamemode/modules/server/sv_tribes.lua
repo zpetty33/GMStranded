@@ -1,8 +1,8 @@
 GM.Tribes = GM.Tribes or {}
 GM.Tribes.tblTribes = {}
 
-if !file.Exists( "SGStranded/Tribes", "DATA" ) then
-	file.CreateDir( "SGStranded/Tribes" )
+if !file.Exists( "sgstranded/tribes", "DATA" ) then
+	file.CreateDir( "sgstranded/tribes" )
 end
 
 --Server to Client
@@ -369,14 +369,14 @@ end )
 
 function GM.Tribes:SaveTribes()
 	local tbl = self:GetPermaTribes()
-	file.Write("SGStranded/Tribes/tribes.txt",util.TableToJSON(tbl, true))
+	file.Write("sgstranded/tribes/tribes.txt",util.TableToJSON(tbl, true))
 	ServerLog("Stranded: Tribes Saved\n")
 end
 
 function GM.Tribes:LoadTribes()
 	local tbl_tribes = {}
-	if file.Exists("SGStranded/Tribes/tribes.txt", "DATA") then
-		local tbl = file.Read("SGStranded/Tribes/tribes.txt", "DATA")
+	if file.Exists("sgstranded/tribes/tribes.txt", "DATA") then
+		local tbl = file.Read("sgstranded/tribes/tribes.txt", "DATA")
 		tbl_tribes = util.JSONToTable( tbl )
 		
 		for k, v in pairs( tbl_tribes ) do

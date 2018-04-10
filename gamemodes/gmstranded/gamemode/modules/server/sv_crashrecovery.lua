@@ -19,7 +19,7 @@ function SGS_CrashGenerateReport()
 		end
 	end
 
-	file.Write( 'SGStranded/CrashRecovery/' .. GetConVarString( "hostport" ) .. '_recoverydata_'..game.GetMap()..'.txt', util.TableToJSON( SGS.CrashRecovery, true ) )
+	file.Write( 'sgstranded/crashrecovery/' .. GetConVarString( "hostport" ) .. '_recoverydata_'..game.GetMap()..'.txt', util.TableToJSON( SGS.CrashRecovery, true ) )
 	print("DEBUG: Crash File Generated and Wrote")
 
 end
@@ -35,8 +35,8 @@ concommand.Add("sgs_savecrashreport", function(ply, cmd, args)
 end)
 
 function SGS_LoadCrashFile()
-	if file.Exists('SGStranded/CrashRecovery/' .. GetConVarString( "hostport" ) .. '_recoverydata_'..game.GetMap()..'.txt', 'DATA') then
-		local todecode = file.Read('SGStranded/CrashRecovery/' .. GetConVarString( "hostport" ) .. '_recoverydata_'..game.GetMap()..'.txt', 'DATA')
+	if file.Exists('sgstranded/crashrecovery/' .. GetConVarString( "hostport" ) .. '_recoverydata_'..game.GetMap()..'.txt', 'DATA') then
+		local todecode = file.Read('sgstranded/crashrecovery/' .. GetConVarString( "hostport" ) .. '_recoverydata_'..game.GetMap()..'.txt', 'DATA')
 		local tbl = util.JSONToTable( todecode )
 		
 		SGS.CrashRecovery = tbl

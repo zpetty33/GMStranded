@@ -1,8 +1,8 @@
 local PlayerMeta = FindMetaTable("Player")
 local EntityMeta = FindMetaTable("Entity")
 
-if !file.Exists( "SGStranded/NewSaves", "DATA" ) then
-	file.CreateDir( "SGStranded/NewSaves" )
+if !file.Exists( "sgstranded/newsaves", "DATA" ) then
+	file.CreateDir( "sgstranded/newsaves" )
 end
 
 net.Receive( "sgs_readytoload", function( len, ply )
@@ -212,7 +212,7 @@ function PlayerMeta:SaveCharacter()
 	
 	tbl.gtokens = self.gtokens
 	
-	file.Write( "SGStranded/NewSaves/" ..self:GetPlayerID().. ".txt", util.TableToJSON( tbl, true ) )
+	file.Write( "sgstranded/newsaves/" ..self:GetPlayerID().. ".txt", util.TableToJSON( tbl, true ) )
 	self:SendMessage("Character Saved!", 60, Color(255, 255, 255, 255))
 	
 	tbl = nil
@@ -253,7 +253,7 @@ end
 concommand.Add("sgs_saveall", SGS_ConSaveAllCharacters)
 
 function PlayerMeta:LoadCharacter()
-	if file.Exists( "SGStranded/NewSaves/" .. self:GetPlayerID() .. ".txt", "DATA" ) then
+	if file.Exists( "sgstranded/newsaves/" .. self:GetPlayerID() .. ".txt", "DATA" ) then
 		SGS_LoadPlayer( self )
 	else
 		self:SetLevels()
@@ -276,7 +276,7 @@ end
 function SGS_LoadPlayer( ply )
 	if not IsValid( ply ) then return end
 	
-	local tbl = util.JSONToTable( file.Read( "SGStranded/NewSaves/" .. ply:GetPlayerID() .. ".txt", "DATA" ) )
+	local tbl = util.JSONToTable( file.Read( "sgstranded/newsaves/" .. ply:GetPlayerID() .. ".txt", "DATA" ) )
 
 	ply.level = {}
 	ply.exp = {}

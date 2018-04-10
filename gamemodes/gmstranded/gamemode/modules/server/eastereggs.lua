@@ -22,14 +22,14 @@ concommand.Add( "sgs_createegglist", function( ply )
 	end
 	
 	
-	file.Write("SGStranded/egglist.txt",util.TableToJSON(SGS.eggtable, true))
+	file.Write("sgstranded/egglist.txt",util.TableToJSON(SGS.eggtable, true))
 end)
 
 function SGS_LoadEggList()
 
-	if not file.Exists("SGStranded/egglist.txt", "DATA") then return end
+	if not file.Exists("sgstranded/egglist.txt", "DATA") then return end
 	ServerLog("Loading Egg List\n")
-	SGS.eggtable = util.JSONToTable(file.Read("SGStranded/egglist.txt", “DATA”))
+	SGS.eggtable = util.JSONToTable(file.Read("sgstranded/egglist.txt", “DATA”))
 
 end
 timer.Simple( 1, SGS_LoadEggList )

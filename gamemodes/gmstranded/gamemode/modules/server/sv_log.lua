@@ -1,11 +1,11 @@
 SGS.logfile = nil
 
-if !file.Exists( "SGStranded/Logs", "DATA" ) then
-	file.CreateDir( "SGStranded/Logs" )
+if !file.Exists( "sgstranded/logs", "DATA" ) then
+	file.CreateDir( "sgstranded/logs" )
 end
 
 function SGS.CheckLogFile()
-	SGS.logfile = os.date( "SGStranded/Logs/" .. "%m-%d-%y" .. ".txt" )
+	SGS.logfile = os.date( "sgstranded/logs/" .. "%m-%d-%y" .. ".txt" )
 	if !file.Exists( SGS.logfile, "DATA" ) then
 		file.Write( SGS.logfile, "" )
 	end
