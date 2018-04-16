@@ -2112,3 +2112,8 @@ function PlayerMeta:GetMaxStructures()
 	if self:IsDonator() then maxS = SGS.maxdonatorstructures end
 	return maxS
 end
+
+net.Receive("GAT_ColorMessage", function(length )
+	local message = net.ReadTable()
+	chat.AddText( unpack( message ) )
+end)
