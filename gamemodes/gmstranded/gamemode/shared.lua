@@ -15,7 +15,7 @@ CPPI_DEFER = 16
 
 GM.GroupData = {}
 GM.GroupData = {
-	["superadmin"] 	= { name = "Developer", 	color = Color( 0, 255, 55, 255 ) },
+	["superadmin"] 	= { name = "Owner", 		color = Color( 0, 255, 55, 255 ) },
 	["admin"]		= { name = "Administrator", color = Color( 255, 128, 0, 255 ) },
 	["moderator"] 	= { name = "Moderator", 	color = Color( 255, 50, 50, 255 ) },
 	["sponsor2"] 	= { name = "Void Sponsor", 	color = Color( 171, 0, 255, 255 ) },
