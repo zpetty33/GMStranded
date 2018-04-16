@@ -6866,23 +6866,6 @@ function SGS_ChatFilter( ply, text, public )
 end
 hook.Add( "PlayerSay", "SGS_ChatFilter", SGS_ChatFilter )
 
-function CheckDonationGoal()
-	if ( goalSet or false ) == false then
-		http.Fetch( "http://g4p.org/StrandedTOS/returngoal.php",
-			function( body, len, headers, code )
-				if tonumber(body) >= 0 then
-					goalSet = true
-					SGS_SetAllSkillsBonus( nil, _, { 200 } )
-				end
-			end,
-			function( error )
-				print( error )
-			end )
-	end
-end
-timer.Create("AutomateDonationGoal", 1800, 0, function() CheckDonationGoal() end )
-timer.Simple( 1, function() CheckDonationGoal() end )
-
 function EnterVehicleNoTarget( ply, veh, num )
 	ply:SetNoTarget( true )
 end
