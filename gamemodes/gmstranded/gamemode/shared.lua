@@ -2,7 +2,7 @@ GM.Name		= "Garry's Mod Stranded"
 GM.Author	= "Zach Petty - Mr.President"
 GM.Email	= "mrp@g4p.org"
 GM.Website	= "http://www.g4p.org"
-GM.Version 	= "18.01.24"
+GM.Version 	= "18.01.29"
 
 SGS = SGS or {}
 

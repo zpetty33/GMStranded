@@ -5165,9 +5165,10 @@ end
 hook.Add( "PlayerSay", "SGS_ChatAdminMode", SGS_ChatAdminMode )
 
 function GM:OnPlayerHitGround( ply, bInWater, bOnFloater, flFallSpeed )
-	if ply.amode then return end
+	if ply.amode then return true end
 
-	if CurTime() < ply.last_world_change + 1 then return end
+	-- FIXED: Added fallback (or 0) to prevent the "attempt to perform arithmetic on a nil value" crash
+	if CurTime() < (ply.last_world_change or 0) + 1 then return true end
 
 	
 	if flFallSpeed >= 380 and flFallSpeed <= 1000 then
@@ -5209,6 +5210,9 @@ function GM:OnPlayerHitGround( ply, bInWater, bOnFloater, flFallSpeed )
 		return true
 	end
 
+	-- FIXED: This completely stops Garry's Mod from applying the default 10 fall damage 
+	-- for smaller jumps (speeds under 380)
+	return true
 end
 
 function PlayerMeta:ProcessFallDeath()
@@ -6456,8 +6460,10 @@ function SGS_SpawnMeteor()
 	local world = ChooseWorld()
 	local coords = FindGoodSpot( world )
 
+	-- SIMPLE FIX: Removed the recursive call. 
+	-- If it fails to find a spot in 50 tries, it just gives up and waits 60 seconds.
 	if not coords then
-		SGS_SpawnMeteor()
+		SGS_Log( "Meteorite failed to find a valid spawn on World: " .. world.Name )
 		return
 	end
 
@@ -6480,6 +6486,7 @@ function SGS_SpawnMeteor()
 			v:SendMessage( "A Meteorite has landed on a distant world.", 60, Color(255, 255, 0, 255))
 		end
 	end
+	
 	local sound = CreateSound( game.GetWorld(), "ambient/explosions/exp1.wav", filter )
 	if sound then
 		sound:SetSoundLevel( 0 )
@@ -6491,32 +6498,26 @@ end
 function FindGoodSpot( world )
 	local tries = 50
 
-	for i=1, 50 do
+	for i=1, tries do
 		local rndPosX = math.random( world.Bounds[1].Min.x + 100, world.Bounds[1].Max.x - 100)
 		local rndPosY = math.random( world.Bounds[1].Min.y + 100, world.Bounds[1].Max.y - 100)
 
 		local pos = Vector( rndPosX, rndPosY, world.SkyPos - 400 )
 		local tr = util.TraceLine({
-            start=pos,
-            endpos=pos - Vector(0, 0, 16384),
-			mask=bit.bor(MASK_WATER , MASK_SOLID),
-            filter=ply
-        })
+			start = pos,
+			endpos = pos - Vector(0, 0, 16384),
+			mask = MASK_NPCWORLDSTATIC -- Hits the seafloor, ignores water surface
+		})
 
-		if tr.Hit then
-			if not (tr.MatType == MAT_SLOSH) then
-				if tr.MatType == MAT_DIRT or tr.MatType == MAT_SAND or tr.MatType == MAT_GRASS or tr.MatType == MAT_SNOW then
-					if tr.HitWorld then
-						if #ents.FindInSphere( tr.HitPos, 500 ) <= 0 then
-							return tr.HitPos
-						end
-					end
-				end
+		-- SIMPLE FIX: Stripped out material checks. If it hits the world, it's good!
+		if tr.Hit and tr.HitWorld then
+			if #ents.FindInSphere( tr.HitPos, 500 ) <= 0 then
+				return tr.HitPos
 			end
 		end
 	end
-
-	--Entity(1):SetPos( Vector(rndPosX, rndPosY, world.SkyPos - 400) )
+	
+	return false
 end
 
 function ChooseWorld()
@@ -6538,7 +6539,7 @@ function MeteorCheck()
 	if CurTime() < SGS.nextmeteor then return end
 	if math.random(1,1000) <= 25 then
 		SGS_SpawnMeteor()
-		SGS.nextmeteor = CurTime() + ( 60 * 60 * 3 ) //1 Hour Cooldown between meteor chances
+		SGS.nextmeteor = CurTime() + ( 60 * 60 * 3 ) -- 3 Hour Cooldown between meteor chances
 	end
 end
 
@@ -6932,3 +6933,65 @@ function GM.getUser( target )
 
 	return plyMatch
 end
+
+timer.Create("SGS_OceanContraptionUnfreeze", 2, 0, function()
+    -- Get all the custom Stranded props
+    local entsToCheck = ents.FindByClass("gms_prop")
+    
+    -- (Optional) If your workbenches or other structures use different class names, 
+    -- you can add them to the list like this:
+    -- table.Add(entsToCheck, ents.FindByClass("gms_workbench"))
+
+    for _, ent in ipairs(entsToCheck) do
+        -- Check if the entity exists and is touching water
+        if IsValid(ent) and ent:WaterLevel() > 0 then
+            
+            local phys = ent:GetPhysicsObject()
+            
+            -- If the object is currently frozen, we need to unfreeze it and its friends
+            if IsValid(phys) and not phys:IsMotionEnabled() then
+                
+                -- This function grabs the prop AND everything welded/constrained to it
+                local contraption = constraint.GetAllConstrainedEntities(ent)
+                
+                if contraption then
+                    for _, linkedEnt in pairs(contraption) do
+                        if IsValid(linkedEnt) then
+                            local linkedPhys = linkedEnt:GetPhysicsObject()
+                            
+                            -- Unfreeze each attached piece and wake up its physics
+                            if IsValid(linkedPhys) then
+                                linkedPhys:EnableMotion(true)
+                                linkedPhys:Wake()
+                            end
+                        end
+                    end
+                end
+                
+            end
+        end
+    end
+end)
+hook.Add("PhysgunPickup", "SGS_PhysgunUnfreezeContraption", function(ply, ent)
+    -- Don't bother with players or the world
+    if not IsValid(ent) or ent:IsPlayer() or ent:IsWorld() then return end
+
+    -- Get every entity welded or constrained to the one we just grabbed
+    local contraption = constraint.GetAllConstrainedEntities(ent)
+    
+    if contraption then
+        for _, linkedEnt in pairs(contraption) do
+            if IsValid(linkedEnt) then
+                local phys = linkedEnt:GetPhysicsObject()
+                if IsValid(phys) then
+                    -- Enable motion so the whole thing can be moved as one
+                    phys:EnableMotion(true)
+                    phys:Wake()
+                end
+            end
+        end
+    end
+    
+    -- Returning nothing allows the normal pickup to continue
+end)
+

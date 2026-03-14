@@ -39,8 +39,12 @@ function GM.Sky:ParseAddObject( tblSkyObject )
 end
 
 function GM.Sky:WorldChanged( tblNewWorld )
+	-- FIXED: Add this line right at the top to stop the script if the world is nil
+	if not tblNewWorld then return end
+
 	if self.m_bInBloodMoon then return end
 	self.m_pCamera:ClearSky()
+	
 	if not tblNewWorld.SkyObjects then return end
 	
 	for k, v in ipairs( tblNewWorld.SkyObjects ) do

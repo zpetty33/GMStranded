@@ -3114,7 +3114,16 @@ function SGS_BuildStructure_Start(ply, len, item, packaged)
 		return
 	end
 	
-	if GAMEMODE.Worlds:GetEntityWorldSpace( ply ).RestrictBuild then
+	-- FIXED: We now assign the world to a variable and verify it exists!
+	local currentWorld = GAMEMODE.Worlds:GetEntityWorldSpace( ply )
+	
+	if not currentWorld then
+		ply:SendMessage("You are outside the world boundaries and cannot build here.", 60, Color(255, 0, 0, 255))
+		return
+	end
+
+	-- Now it is safe to check for the building restriction
+	if currentWorld.RestrictBuild then
 		ply:SendMessage("Spawning Items in the Arena is prohibited.", 60, Color(255, 0, 0, 255))
 		return
 	end
@@ -3166,9 +3175,9 @@ function SGS_BuildStructure_Start(ply, len, item, packaged)
 		timer.Create( ply:UniqueID() .. "processtimer", len, 1, function() SGS_BuildStructure_Stop( ply, _, item, packaged ) end )
 	end
 	
-
 end
 
+                                              
 function SGS_BuildStructure_Stop(ply, ent, item, packaged)
 
 	if not ply:IsValid() then return end
@@ -3187,15 +3196,17 @@ function SGS_BuildStructure_Stop(ply, ent, item, packaged)
 		ply:SendMessage("CRITICAL ERROR #010. Please report this error code.", 60, Color(255, 0, 0, 255))
 		return
 	end
+	
 	ply:AddExp( "construction", item.xp )
 	ply:AddStat( "construction3", 1 )
 
-	chance = 800
+	local chance = 800
 	if ply.luck then
 		local luck = 150
 		luck = luck * ply.luck
 		chance = chance - luck
 	end	
+	
 	if math.random(1, chance) == 1 then
 		ply:FoundGrayEgg()
 	end
@@ -3219,8 +3230,7 @@ function SGS_BuildStructure_Stop(ply, ent, item, packaged)
 	ply:RandomFindChance()
 	ply.buildent = nil
 	ply:SendStructureCount()
-end
-
+end                                                  
 --------------------
 --Unpack Structure--
 --------------------

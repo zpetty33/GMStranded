@@ -108,7 +108,8 @@ function SGS_SetUpTablesShared()
 		"gms_nocollider",
 		"gms_sppshare",
 		"gms_packager",
-		"gmod_camera"
+		"gmod_camera",
+        "gms_weld"
 	}
 
 	SGS.AllowedRemove = {

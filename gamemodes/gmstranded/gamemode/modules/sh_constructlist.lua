@@ -250,6 +250,17 @@ RECIPE.spawntime = 3
 RECIPE.xp = 80
 Menu_RegisterStructure( "other", RECIPE )
 
+RECIPE = {}
+RECIPE.model = "models/props_c17/canister01a.mdl"
+RECIPE.title = "Thruster"
+RECIPE.description = "Provides directional force when activated!\nUseful for boats or flying contraptions."
+RECIPE.cost = { iron = 15, metal = 10, coal = 5 }
+RECIPE.reqlvl = { construction = 15 }
+RECIPE.ent = "gms_thruster"
+RECIPE.spawntime = 4
+RECIPE.xp = 150
+Menu_RegisterStructure( "other", RECIPE )
+
 /*
 Doors Construction
 */

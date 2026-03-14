@@ -1,10 +1,10 @@
 local world = {}
-world.Name		= "Spawn World"
+world.Name		= "Seven Seas Main"
 world.SkyPos 	= 3000
 world.Bounds	= {
 	[1] = {
-		Min = Vector( -11248, -11248, -500 ),
-		Max = Vector( 11248, 11248, 3465 )
+		Min = Vector( -15856, -15218, -6000 ),
+		Max = Vector( 15856, 13780, 6000 )
 	},
 }
 world.Gravity		= 1.0
@@ -12,7 +12,9 @@ world.ZombieSpawns	= true
 world.Entities	= {
 }
 world.expmod = 1.0
+
 --[[ World Skybox ]]--
+-- (Leave your world.SkyObjects and world.Weather exactly as they were below this point!)
 world.SkyObjects = {
 	{
 		ClassName = "CPlanet", --Class name, this one is a planet

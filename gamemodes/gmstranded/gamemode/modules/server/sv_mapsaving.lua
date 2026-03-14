@@ -1,3 +1,29 @@
+SGS.savedentities = {
+    -- Resource Nodes
+    "gms_stonenode",
+    "gms_ironnode",
+    "gms_coalnode",
+    "gms_silvernode",
+    "gms_naquadahnode",
+    "gms_triniumnode",
+    "gms_goldnode",
+    "gms_mithrilnode",
+    "gms_platinumnode",
+    
+    -- Trees
+    "gms_tree",
+    "gms_tree2",
+    "gms_tree3",
+    "gms_tree4",
+    "gms_tree5",
+    "gms_tree6",
+    "gms_tree7",
+    
+    -- NPCs
+    "npc_kleiner",
+    "npc_vortigaunt"
+}
+
 function SGS_LoadWorlds()
 	SGS.WorldEntities = {}
 	for w_id, _ in pairs( GAMEMODE.Worlds.tblWorlds ) do
@@ -5,15 +31,19 @@ function SGS_LoadWorlds()
 			SGS.WorldEntities[w_id] = util.JSONToTable( file.Read("sgstranded/mapsaves/" .. game.GetMap() .. "_world_" .. tostring(w_id) .. ".txt", "DATA") )
 		end
 	end
-	--[[
+	
+	-- UNCOMMENTED: Automatically load all worlds on startup
 	for w_id, world in pairs( GAMEMODE.Worlds.tblWorlds ) do
 		SGS_LoadWorld( w_id )
 	end
-	]]
 end
 
 function SGS_LoadWorld( w_id )
 	if GAMEMODE.Worlds.tblWorlds[w_id].loaded then return end
+	
+	-- ADDED: Prevents a crash if the world doesn't have a map save file yet
+	if not SGS.WorldEntities[w_id] then return end
+	
 	SGS_ClearWorld( w_id )
 	local num = table.Count( SGS.WorldEntities[w_id] )
 	

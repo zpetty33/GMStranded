@@ -178,7 +178,17 @@ RECIPE.entity = "gms_proplocker"
 RECIPE.icon = "vgui/tools/welder.png"
 Menu_RegisterTool( "construction", RECIPE )
 
-
+RECIPE = {}
+RECIPE.model = "models/weapons/w_toolgun.mdl"
+RECIPE.skin = 1
+RECIPE.title = "Weld Tool"
+RECIPE.description = "Primary: Select two props to weld.\nCosts 1 Iron per weld."
+RECIPE.cost = { iron = 10, wood = 5}
+RECIPE.reqlvl = { smithing = 5}
+RECIPE.xp = 25
+RECIPE.entity = "gms_weld" -- Changed from weapon_sgs_weld to match your folder
+RECIPE.icon = "vgui/tools/welder.png" 
+Menu_RegisterTool( "construction", RECIPE )
 ---------------------
 -----woodcutting-----
 ---------------------
